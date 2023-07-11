@@ -1,16 +1,62 @@
-// import React from 'react';
+import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import PostCard from './PostCard';
+
+
+
+
+
+
+
 
 export default function Home() {
+
+  const [posts, setPosts] = useState([])
+
+
+  useEffect(() => {
+    getPosts()
+  }, [])
+
+
+
+  async function getPosts() {
+    const response = await fetch('http://localhost:3000/api/posts')
+
+
+    const data = await response.json()
+    console.log(data)
+    setPosts(data)
+
+  }
+
+
+
+
   return (
     <div>
-      <div className="h-screen bg-gradient-to-tl from-red-500 to-blue-500 flex justify-center">
-        <div className="w-8/12 bg-yellow-100">
-          <input className="w-8/12 h-16 bg-white border-4 border-black-500 shadow mt-16" type="text" />
-          <button className="bg-blue-400 p-4 rounded-md" >Post</button>
+      <div className="h-screen bg-gradient-to-tl from-red-500 to-blue-500 flex justify-center  ">
+
+        <div className="w-8/12 flex   bg-yellow-100 flex-col items-center pt-8 " style={{ backgroundColor: 'rgba(255,255,255,0.3)' }}>
+
+          <h1 className="font-mono mb-8 text-white text-4xl border-b-8 border-white w-full pb-8 ">Enjoy the Discussions</h1>
+
+
+
+
+          <>
+            {posts.map(post => {
+              return (
+                <PostCard title={post.title} content={post.content} key={post._id} id={post._id} />
+              )
+            })
+            }
+          </>
 
         </div>
       </div>
 
-    </div>
+    </div >
   )
 }

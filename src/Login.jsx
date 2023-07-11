@@ -1,9 +1,17 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
+import { useNavigate } from 'react-router';
+import { useUserContext } from './UserProvider';
+
 
 function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
+  const { user, setUser } = useUserContext()
+
+
 
 
   function changeEmail(e) {
@@ -31,11 +39,16 @@ function Login() {
       }),
     })
 
+
     //transform jason into object
     const data = await response.json()
+    setUser(data)
+    localStorage.setItem('user', JSON.stringify(data))
 
 
     console.log(data)
+    navigate("/")
+
   }
 
 
@@ -58,7 +71,7 @@ function Login() {
           <label htmlFor='password ' className='text-2xl'>Password</label>
           <input id="pasword" type="password" className="border-black w-30 h-8" onChange={changePassword} value={password} />
         </div>
-        <button className='bg-blue-400 px-4 rounded-md py-2 text-white text-2xl' type="submit">SignIn</button>
+        <button className='bg-blue-400 px-4 rounded-md py-2 text-white text-2xl font-mono' type="submit">SignIn</button>
 
 
       </form>
