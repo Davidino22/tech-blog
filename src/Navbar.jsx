@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useUserContext } from './UserProvider';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { ImCross } from 'react-icons/im';
+import { useState } from 'react';
 
 
 
@@ -9,6 +11,8 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 function Navbar() {
 
   const { user, setUser } = useUserContext()
+  const [dropdownOn, setDropdownOn] = useState(false)
+
 
 
   function logout() {
@@ -19,14 +23,21 @@ function Navbar() {
   }
 
 
+  function dropdown() {
+    setDropdownOn(!dropdownOn)
+  }
+
+
+
+
 
 
   return (
-    <div className="navbar bg-pink-100 w-full h-12  shadow-md border-none flex justify-between relative sticky top-0">
+    <div className="navbar bg-pink-100 w-full h-12  shadow-md border-none flex justify-between relative sticky top-0 z-10">
       <Link to="/"><div className='absolute left-6 top-2 text-2xl hover:cursor-pointer '>Tech-Blog</div></Link>
 
-
-      <div className=" NavLinks  bg-pink-100 flex flex-col absolute top-10 right-0 p-4 md:flex md:static md:flex-row   md:text-2xl  ">
+      {/* created in html logic for the dropdownmenu in javascript */}
+      <div className={` NavLinks transition-all duration-300 bg-pink-100 flex flex-col absolute ${dropdownOn ? "top-10" : "-top-72  "}  right-0 p-4 md:flex md:static md:flex-row   md:text-2xl  `}>
         <div className="Links
         flex flex-col
            text-2xl  md:flex-row md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:absolute  md:justify-between md:left-1/2 md:w-60 " >
@@ -48,7 +59,7 @@ function Navbar() {
       </div>
 
 
-      <GiHamburgerMenu className='md:hidden absolute right-6 top-2 ' size={30} />
+      <button className='md:hidden absolute right-6 top-2  ' onClick={dropdown}>{dropdownOn ? <ImCross size={30} /> : <GiHamburgerMenu size={30} />} </button>
     </div>
   )
 }
