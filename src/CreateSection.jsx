@@ -68,20 +68,20 @@ export default function CreateSection() {
   return (
     <div className="h-screen bg-gradient-to-tl from-red-500 to-blue-500 pt-16 flex justify-center align-center ">
 
-      <div className="text-center bg-yellow-600 w-5/12 h-2/5 rounded-lg flex border-red-200">
+      <div className="text-center w-5/12   rounded-lg ">
 
-
+        <p className='text-5xl m-8 text-white border-b-4'>Create a new Post</p>
         <form className="w-full" onSubmit={handleSubmit} >
-          <label htmlFor='title' className='font-mono text-white ' ></label>
-          <input className='w-full  h-8  ' placeholder='Title' type="text" id="title" onChange={handleTitle} value={title} />
+          <label htmlFor='title' className='font-mono  ' ></label>
+          <input className='w-full border-b-2 border-slate-800 h-16 text-2xl' placeholder='Title' type="text" id="title" onChange={handleTitle} value={title} />
           <label htmlFor="text" className='text-white font-mono'></label>
-          <textarea className='w-full h-18' id="text" onChange={handleText} value={text} placeholder="write a descripton..."></textarea>
+          <textarea className='w-full h-36 text-2xl' id="text" onChange={handleText} value={text} placeholder="write a descripton..."></textarea>
 
 
 
 
-          <div className=' flex justify-end border-2 border-red-200 w-full bg-white'>
-            <button className='bg-blue-400 px-4 rounded-md py-2 text-white text-2xl font-mono ' type="submit" >Post </button>
+          <div className=' flex justify-center w-full '>
+            <button className='bg-blue-400 p-12 rounded-md py-2 text-white text-2xl font-mono ' type="submit" >Post </button>
           </div>
 
 

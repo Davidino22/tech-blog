@@ -41,7 +41,7 @@ function Navbar() {
         <div className="Links
         flex flex-col
            text-2xl  md:flex-row md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:absolute  md:justify-between md:left-1/2 md:w-60 " >
-          <div className='hover:cursor-pointer '>About</div>
+          <Link to="/about" >About</Link>
           <div className='hover:cursor-pointer' >Profile</div>
           <Link to="/new" >New</Link>
         </div>
