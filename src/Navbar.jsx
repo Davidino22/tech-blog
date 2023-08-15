@@ -12,6 +12,14 @@ function Navbar() {
 
   const { user, setUser } = useUserContext()
   const [dropdownOn, setDropdownOn] = useState(false)
+  //create state for activelinkbar to see which one is clicked and to change the background
+  const [activeLink, setActiveLink] = useState('');
+
+
+  function handleLinkClick(linkPath) {
+    setActiveLink(linkPath);
+  };
+
 
 
 
@@ -34,16 +42,16 @@ function Navbar() {
 
   return (
     <div className="navbar bg-pink-100 w-full h-12  shadow-md border-none flex justify-between relative sticky top-0 z-10">
-      <Link to="/"><div className='absolute left-6 top-2 text-2xl hover:cursor-pointer '>Tech-Blog</div></Link>
+      <Link to="/" className={activeLink === '/' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/')}><div className='absolute left-6 top-2 text-2xl hover:cursor-pointer '>Tech-Blog</div></Link>
 
       {/* created in html logic for the dropdownmenu in javascript */}
       <div className={` NavLinks transition-all duration-300 bg-pink-100 flex flex-col absolute ${dropdownOn ? "top-10" : "-top-72  "}  right-0 p-4 md:flex md:static md:flex-row   md:text-2xl  `}>
         <div className="Links
         flex flex-col
            text-2xl  md:flex-row md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:absolute  md:justify-between md:left-1/2 md:w-60 " >
-          <Link to="/about" >About</Link>
+          <Link to="/about" className={activeLink === '/about' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/about')}>About</Link>
           <div className='hover:cursor-pointer' >Profile</div>
-          <Link to="/new" >New</Link>
+          <Link to="/new" className={activeLink === '/new' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/new')}>New</Link>
         </div>
         <div className='buttons flex-col gap-y-2 flex md:flex-row md:absolute  md:right-3 md:top-1/2  md:-translate-y-1/2  '>
 

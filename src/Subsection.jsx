@@ -94,11 +94,11 @@ export default function Subsection() {
       // Check if data exists and has the 'userId' property and it's not null
       if (data && data.userId !== null) {
         const userID = data.userId;
-        console.log(userID);
+
         const userResponse = await fetch(`http://localhost:3000/api/user/${userID}`);
         const user = await userResponse.json();
         data.user = user;
-        console.log(data);
+
         comments.push(data);
       } else {
         console.error(`Invalid comment data for comment ID ${commentId}:`, data);
