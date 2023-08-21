@@ -21,13 +21,17 @@ export default function Subsection() {
   // console.log(id)
 
   useEffect(() => {
+    // uzimamo post iz bekenda sa id-em iz naseg url-a/ route-a
     fetch(`http://localhost:3000/api/posts/${id}`)
       .then((response) => response.json())
 
       .then((data) => {
-
+        // stavljamo taj post u state post
         setPost(data)
+        // uzimamo samo identifikatore komentara iz tog posta
         const commentIDs = data.comments
+
+        // identikfikatore predajemo u funkciju getcomments
         getcomments(commentIDs)
 
 
@@ -39,7 +43,7 @@ export default function Subsection() {
 
 
   async function deleteItem() {
-    // console.log('deleted')
+
 
     const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
 
@@ -52,7 +56,7 @@ export default function Subsection() {
 
     })
     const data = await response.json()
-    // console.log(data);
+
     navigate('/');
   }
 
@@ -64,7 +68,7 @@ export default function Subsection() {
   }
 
 
-  // getting the comment
+  // posting the comment / commenting
   async function comment() {
 
     const response = await fetch(`http://localhost:3000/api/comments`, {
@@ -79,13 +83,11 @@ export default function Subsection() {
     const data = await response.json()
     console.log(data)
 
-
-
   }
 
-
+  // funkcija koja dobije identifikatore komentara i komentare koje dobija iz bekenda stavlja u stejt comments
   async function getcomments(commentIDs) {
-    let comments = [];
+    let commentsArr = [];
 
     for (let commentId of commentIDs) {
       const response = await fetch(`http://localhost:3000/api/comments/${commentId}`);
@@ -96,16 +98,17 @@ export default function Subsection() {
         const userID = data.userId;
 
         const userResponse = await fetch(`http://localhost:3000/api/user/${userID}`);
-        const user = await userResponse.json();
-        data.user = user;
+        const userData = await userResponse.json();
+        // zapamti usera u objekat komentara
+        data.user = userData;
 
-        comments.push(data);
+        commentsArr.push(data);
       } else {
         console.error(`Invalid comment data for comment ID ${commentId}:`, data);
       }
     }
 
-    setComments(comments);
+    setComments(commentsArr);
   }
 
 
@@ -115,7 +118,7 @@ export default function Subsection() {
     e.preventDefault()
     comment()
     setInput("")
-    // navigate(0)
+    navigate(0)
 
   }
 

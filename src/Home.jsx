@@ -23,13 +23,29 @@ export default function Home() {
 
   async function getPosts() {
     const response = await fetch('http://localhost:3000/api/posts')
-
-
     const data = await response.json()
-    console.log(data)
+    for (let post of data) {
+      const postUser = post.userId
+      const userResponse = await fetch(`http://localhost:3000/api/user/${postUser}`);
+      const userData = await userResponse.json();
+
+
+      post.user = userData;
+      const userEmail = post.user.email
+
+    }
+
+
     setPosts(data)
 
+
+
   }
+
+
+
+
+
 
 
 
@@ -48,7 +64,7 @@ export default function Home() {
           <>
             {posts.map(post => {
               return (
-                <PostCard title={post.title} content={post.content} key={post._id} id={post._id} />
+                <PostCard title={post.title} content={post.content} key={post._id} id={post._id} user={post.user.email} />
               )
             })
             }
