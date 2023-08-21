@@ -20,22 +20,39 @@ export default function Subsection() {
   let { id } = useParams();
   // console.log(id)
 
+
+
+
+
+  async function getPost() {
+    const response = await fetch(`http://localhost:3000/api/posts/${id}`)
+    const data = await response.json()
+    const postUserId = data.userId
+    const userResponse = await fetch(`http://localhost:3000/api/user/${postUserId}`);
+    const userData = await userResponse.json();
+
+    data.user = userData
+
+
+
+
+    // stavljamo taj post u state post
+    setPost(data)
+    // uzimamo samo identifikatore komentara iz tog posta
+    const commentIDs = data.comments
+
+
+    // identikfikatore predajemo u funkciju getcomments
+    getcomments(commentIDs)
+
+  }
+
+
+
+
   useEffect(() => {
-    // uzimamo post iz bekenda sa id-em iz naseg url-a/ route-a
-    fetch(`http://localhost:3000/api/posts/${id}`)
-      .then((response) => response.json())
+    getPost()
 
-      .then((data) => {
-        // stavljamo taj post u state post
-        setPost(data)
-        // uzimamo samo identifikatore komentara iz tog posta
-        const commentIDs = data.comments
-
-        // identikfikatore predajemo u funkciju getcomments
-        getcomments(commentIDs)
-
-
-      });
   }, [id])
 
 
@@ -143,8 +160,10 @@ export default function Subsection() {
 
         {post && <div className='w-3/5 bg-teal-50  rounded-t-md h-36 border-b-2 border-slate-500 '>
 
-          <p className='text-2xl border-b-2 border-slate-500 py-2'>{post.title}</p>
-          <p className='p-4  '>{post.content}</p>
+          <div className=' border-b-2 border-slate-500 py-2'><p className='text-2xl'>{post.title}</p><p>{post.user.email}</p></div>
+
+          <p className='p-4 text-2xl '>{post.content}</p>
+
         </div>}
 
         {user ?
