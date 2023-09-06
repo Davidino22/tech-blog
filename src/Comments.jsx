@@ -57,7 +57,7 @@ export default function Comments(props) {
     <>
       {comments.map((comment) => <div key={comment._id} className="bg-white w-3/5  p-4 m-1 relative text-left  rounded"  ><p className='border-slate-800 border-b-2 text-xl '>{comment.user.email}</p> <p>{comment.text} </p>
 
-        {user._id === comment.userId ? < AiOutlineDelete size={30} color={"red"} className=" absolute top-2 right-10 cursor-pointer" onClick={() => deleteItem(comment._id)} /> : null} </div>)
+        {user && user._id === comment.userId ? < AiOutlineDelete size={30} color={"red"} className=" absolute top-2 right-10 cursor-pointer" onClick={() => deleteItem(comment._id)} /> : null} </div>)
       }
 
 

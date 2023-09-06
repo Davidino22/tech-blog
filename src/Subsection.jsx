@@ -6,6 +6,8 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useUserContext } from './UserProvider';
 import Comments from './Comments';
+import PopUpDelete from './PopUpDelete';
+
 
 
 
@@ -14,11 +16,21 @@ export default function Subsection() {
   const [input, setInput] = useState('')
   const { user, setUser } = useUserContext()
   const [comments, setComments] = useState([])
+  const [isPopUpOpen, setPopUpOpen] = useState(false);
+
+
+
 
 
   const navigate = useNavigate();
   let { id } = useParams();
-  // console.log(id)
+
+
+
+
+
+
+
 
 
 
@@ -59,23 +71,33 @@ export default function Subsection() {
 
 
 
+
+
+  // create deleteitem to setPopUpOpen to true
+
   async function deleteItem() {
+    setPopUpOpen(true);
+  }
 
-
+  //async function where i delte the item
+  async function handleConfirm() {
     const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
-
-
       method: "DELETE",
       headers: {
         "Content-type": "application/json"
       },
-
-
-    })
-    const data = await response.json()
-
+    });
+    const data = await response.json();
     navigate('/');
+    setPopUpOpen(false);
+    console.log('deleted')
   }
+
+  // if i want to cancel my deleting
+  function handleCancel() {
+    setPopUpOpen(false);
+  }
+
 
 
   // getting the input
@@ -153,16 +175,21 @@ export default function Subsection() {
         <div >
           <Link to="/" className=' absolute top-4 left-0 text-2xl'><IoMdArrowBack size={30} />Home </Link>
 
-          <button onClick={deleteItem} className=" absolute top-4 right-0"><AiOutlineDelete size={50} color={"red"} /> </button >
+
+          {user && post &&
+            user._id === post.userId ? < button onClick={deleteItem} className=" absolute top-4 right-0"><AiOutlineDelete size={50} color={"red"} /> </button > : null}
+          {isPopUpOpen && <PopUpDelete onConfirm={handleConfirm} onCancel={handleCancel} />}
+
+
         </div>
 
 
 
-        {post && <div className='w-3/5 bg-teal-50  rounded-t-md h-36 border-b-2 border-slate-500 '>
+        {post && <div className='w-3/5 bg-teal-50  rounded-t-md h-full overflow-auto border-b-2 border-slate-500 '>
 
-          <div className=' border-b-2 border-slate-500 py-2'><p className='text-2xl'>{post.title}</p><p>{post.user.email}</p></div>
+          <div className=' py-2 '><p className='text-2xl'>{post.title}</p><p>{post.user.email}</p></div>
 
-          <p className='p-4 text-2xl '>{post.content}</p>
+          <p className=' text-2xl h-full '>{post.content}</p>
 
         </div>}
 
@@ -173,7 +200,7 @@ export default function Subsection() {
             ></textarea>
 
             <button className=' w-1/5 bg-blue-400 text-2xl text-white rounded-md ' style={{ flexGrow: 1 }} type="submit" >Comment</button>
-          </form> : <div>If you want to add a comment you need to <Link to="/login" className="bg-yellow-400 p-2">SignIn</Link> </div>}
+          </form> : <div className='p-8'>If you want to add a comment you need to <Link to="/login" className="bg-yellow-400 p-4 rounded-md ">SignIn</Link> </div>}
 
         <Comments comments={comments} />
       </div>

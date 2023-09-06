@@ -8,6 +8,7 @@ import { Routes, Route } from 'react-router';
 import Subsection from './Subsection';
 import CreateSection from './CreateSection';
 import About from './About';
+import Footer from './Footer';
 
 function App() {
   // creating all the routers in App.jsx
@@ -29,7 +30,7 @@ function App() {
 
 
       </Routes>
-
+      <Footer />
     </div>
   )
 }

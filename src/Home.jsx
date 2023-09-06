@@ -2,12 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import PostCard from './PostCard';
-
-
-
-
-
-
+import Footer from './footer';
 
 
 export default function Home() {
@@ -71,8 +66,10 @@ export default function Home() {
           </>
 
         </div>
+
       </div>
 
     </div >
+
   )
 }

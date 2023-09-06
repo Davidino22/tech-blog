@@ -50,7 +50,7 @@ function Navbar() {
         flex flex-col
            text-2xl  md:flex-row md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:absolute  md:justify-between md:left-1/2 md:w-60 " >
           <Link to="/about" className={activeLink === '/about' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/about')}>About</Link>
-          <div className='hover:cursor-pointer' >Profile</div>
+
           <Link to="/new" className={activeLink === '/new' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/new')}>New</Link>
         </div>
         <div className='buttons flex-col gap-y-2 flex md:flex-row md:absolute  md:right-3 md:top-1/2  md:-translate-y-1/2  '>
