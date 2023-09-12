@@ -18,6 +18,13 @@ export default function Subsection() {
   const [comments, setComments] = useState([])
   const [isPopUpOpen, setPopUpOpen] = useState(false);
 
+  let url
+  if (import.meta.env.PROD) {
+    url = import.meta.env.VITE_BACK
+  } else {
+    url = import.meta.env.VITE_LOCAL_BACK
+  }
+
 
 
 
@@ -37,12 +44,6 @@ export default function Subsection() {
 
 
   async function getPost() {
-    let url
-    if (import.meta.env.PROD) {
-      url = import.meta.env.VITE_BACK
-    } else {
-      url = import.meta.env.VITE_LOCAL_BACK
-    }
 
     const response = await fetch(`${url}/posts/${id}`)
     const data = await response.json()
@@ -159,10 +160,10 @@ export default function Subsection() {
 
 
   //handelsubmit function
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
 
     e.preventDefault()
-    comment()
+    await comment()
     setInput("")
     navigate(0)
 
