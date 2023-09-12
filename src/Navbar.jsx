@@ -49,7 +49,7 @@ function Navbar() {
         <div className="Links
         flex flex-col
            text-2xl  md:flex-row md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:absolute  md:justify-between md:left-1/2 md:w-60 " >
-          <Link to="/about" className={activeLink === '/about' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/about')}>About</Link>
+
 
           <Link to="/new" className={activeLink === '/new' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/new')}>New</Link>
         </div>

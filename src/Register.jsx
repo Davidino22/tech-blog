@@ -3,6 +3,15 @@ import Navbar from './Navbar';
 import { useNavigate } from 'react-router';
 
 function Register() {
+
+  let url
+  if (import.meta.env.PROD) {
+    url = import.meta.env.VITE_BACK
+  } else {
+    url = import.meta.env.VITE_LOCAL_BACK
+  }
+
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
@@ -23,7 +32,7 @@ function Register() {
   async function handleSubmit(event) {
     event.preventDefault()
 
-    const response = await fetch('http://localhost:3000/api/user', {
+    const response = await fetch(`${url}/user`, {
 
       method: "POST",
       headers: {

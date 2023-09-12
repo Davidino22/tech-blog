@@ -2,11 +2,17 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import PostCard from './PostCard';
-import Footer from './footer';
+
+
 
 
 export default function Home() {
-
+  let url
+  if (import.meta.env.PROD) {
+    url = import.meta.env.VITE_BACK
+  } else {
+    url = import.meta.env.VITE_LOCAL_BACK
+  }
   const [posts, setPosts] = useState([])
 
 
@@ -17,11 +23,11 @@ export default function Home() {
 
 
   async function getPosts() {
-    const response = await fetch('http://localhost:3000/api/posts')
+    const response = await fetch(` ${url}/posts`)
     const data = await response.json()
     for (let post of data) {
       const postUser = post.userId
-      const userResponse = await fetch(`http://localhost:3000/api/user/${postUser}`);
+      const userResponse = await fetch(`${url}/user/${postUser}`);
       const userData = await userResponse.json();
 
 

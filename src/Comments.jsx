@@ -16,6 +16,13 @@ import { useNavigate, Link, useParams } from 'react-router-dom'
 
 
 export default function Comments(props) {
+
+  let url
+  if (import.meta.env.PROD) {
+    url = import.meta.env.VITE_BACK
+  } else {
+    url = import.meta.env.VITE_LOCAL_BACK
+  }
   const { comments } = props
   const { user, setUser } = useUserContext()
   const navigate = useNavigate();
@@ -28,7 +35,7 @@ export default function Comments(props) {
   async function deleteItem(id) {
     // console.log('deleted')
 
-    const response = await fetch(`http://localhost:3000/api/comments/${id}`, {
+    const response = await fetch(`${url}/comments/${id}`, {
 
 
       method: "DELETE",

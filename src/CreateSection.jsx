@@ -7,6 +7,14 @@ import { useEffect } from 'react';
 
 
 export default function CreateSection() {
+
+  let url
+  if (import.meta.env.PROD) {
+    url = import.meta.env.VITE_BACK
+  } else {
+    url = import.meta.env.VITE_LOCAL_BACK
+  }
+
   const [title, setTitle] = useState("")
   const [text, setText] = useState("")
   const { user, setUser } = useUserContext()
@@ -29,8 +37,7 @@ export default function CreateSection() {
     e.preventDefault()
     console.log({ title: title, content: text, userId: user._id })
 
-    const response = await fetch('http://localhost:3000/api/posts', {
-
+    const response = await fetch(`${url}/posts`, {
 
       method: "POST",
       headers: {

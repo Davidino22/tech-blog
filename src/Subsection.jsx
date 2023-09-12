@@ -37,10 +37,17 @@ export default function Subsection() {
 
 
   async function getPost() {
-    const response = await fetch(`http://localhost:3000/api/posts/${id}`)
+    let url
+    if (import.meta.env.PROD) {
+      url = import.meta.env.VITE_BACK
+    } else {
+      url = import.meta.env.VITE_LOCAL_BACK
+    }
+
+    const response = await fetch(`${url}/posts/${id}`)
     const data = await response.json()
     const postUserId = data.userId
-    const userResponse = await fetch(`http://localhost:3000/api/user/${postUserId}`);
+    const userResponse = await fetch(`${url}/user/${postUserId}`);
     const userData = await userResponse.json();
 
     data.user = userData
@@ -81,7 +88,7 @@ export default function Subsection() {
 
   //async function where i delte the item
   async function handleConfirm() {
-    const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
+    const response = await fetch(`${url}/posts/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json"
@@ -110,7 +117,7 @@ export default function Subsection() {
   // posting the comment / commenting
   async function comment() {
 
-    const response = await fetch(`http://localhost:3000/api/comments`, {
+    const response = await fetch(`${url}/comments`, {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -129,14 +136,14 @@ export default function Subsection() {
     let commentsArr = [];
 
     for (let commentId of commentIDs) {
-      const response = await fetch(`http://localhost:3000/api/comments/${commentId}`);
+      const response = await fetch(`${url}/comments/${commentId}`);
       const data = await response.json();
 
       // Check if data exists and has the 'userId' property and it's not null
       if (data && data.userId !== null) {
         const userID = data.userId;
 
-        const userResponse = await fetch(`http://localhost:3000/api/user/${userID}`);
+        const userResponse = await fetch(`${url}/user/${userID}`);
         const userData = await userResponse.json();
         // zapamti usera u objekat komentara
         data.user = userData;
@@ -187,7 +194,7 @@ export default function Subsection() {
 
         {post && <div className='w-3/5 bg-teal-50  rounded-t-md h-full overflow-auto border-b-2 border-slate-500 '>
 
-          <div className=' py-2 '><p className='text-2xl'>{post.title}</p><p>{post.user.email}</p></div>
+          <div className=' py-2 border-slate-300 border-b-2'><p className='text-2xl '>{post.title}</p><p>{post.user.email}</p></div>
 
           <p className=' text-2xl h-full '>{post.content}</p>
 

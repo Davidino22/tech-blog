@@ -6,6 +6,16 @@ import { useUserContext } from './UserProvider';
 
 
 function Login() {
+
+  let url
+  if (import.meta.env.PROD) {
+    url = import.meta.env.VITE_BACK
+  } else {
+    url = import.meta.env.VITE_LOCAL_BACK
+  }
+
+
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
@@ -28,7 +38,7 @@ function Login() {
   async function handleSubmit(event) {
     event.preventDefault()
 
-    const response = await fetch('http://localhost:3000/api/user/login', {
+    const response = await fetch(`${url}/user/login`, {
 
       method: "POST",
       headers: {
