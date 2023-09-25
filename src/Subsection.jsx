@@ -1,8 +1,8 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { useNavigate, Link, useParams } from 'react-router-dom'
-import { AiOutlineDelete } from 'react-icons/ai';
-
+import { AiOutlineDelete, } from 'react-icons/ai';
+import { GrEdit } from 'react-icons/gr';
 import { IoMdArrowBack } from 'react-icons/io';
 import { useUserContext } from './UserProvider';
 import Comments from './Comments';
@@ -195,7 +195,11 @@ export default function Subsection() {
 
         {post && <div className='w-3/5 bg-teal-50  rounded-t-md h-full overflow-auto border-b-2 border-slate-500 '>
 
-          <div className=' py-2 border-slate-300 border-b-2'><p className='text-2xl '>{post.title}</p><p>{post.user.email}</p></div>
+          <div className=' py-2 border-slate-300 border-b-2 relative'><p className='text-2xl '>{post.title} </p>
+            <p>{post.user.email}</p>
+            {user && post &&
+              user._id === post.userId ?
+              <Link to={`/posts/${id}/edit`} className='absolute top-2 right-2'><GrEdit size={30} /></Link> : null}</div>
 
           <p className=' text-2xl h-full '>{post.content}</p>
 

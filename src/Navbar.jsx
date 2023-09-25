@@ -46,9 +46,10 @@ function Navbar() {
 
       {/* created in html logic for the dropdownmenu in javascript */}
       <div className={` NavLinks transition-all duration-300 bg-pink-100 flex flex-col absolute ${dropdownOn ? "top-10" : "-top-72  "}  right-0 p-4 md:flex md:static md:flex-row   md:text-2xl  `}>
-        <div className="Links
+        <div className="Links border-red-500 border-2
         flex flex-col
-           text-2xl  md:flex-row md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:absolute  md:justify-between md:left-1/2 md:w-60 " >
+           text-2xl  md:flex-row md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:absolute  md:justify-center
+            md:left-1/2 md:w-60 " >
 
 
           <Link to="/new" className={activeLink === '/new' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/new')}>New</Link>
