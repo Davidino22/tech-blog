@@ -69,16 +69,21 @@ function EditPost() {
 
   return (
     < div className="h-screen bg-gradient-to-tl from-red-500 to-blue-500  flex justify-center align-center ">
-      {post &&
 
-        <form className='flex flex-col justify-center align-center ' onSubmit={handleSubmit}>
+      <div className='flex flex-col justify-center align-center w-5/12'>
+        <p className='text-5xl m-8 text-white border-b-4 '>Edit your Post</p>
+        {
+          post &&
 
-          <input className='bg-blue-500 w-80 h-30' value={post.title} onChange={(e) => setPost({ ...post, title: e.target.value, })} />
-          <textarea className='bg-yellow-500 w-60 h-60' value={post.content} onChange={(e) => setPost({ ...post, content: e.target.value })} />
-          <button className='bg-blue-300 text-white' >edit</button>
+          <form className='' onSubmit={handleSubmit}>
 
-        </form>}
+            <input className=' w-full h-16 border-b-2 border-slate-800 text-2xl ' placeholder='title' value={post.title} onChange={(e) => setPost({ ...post, title: e.target.value, })} />
+            <textarea className=' w-full h-36 text-2xl' value={post.content} placeholder='text' onChange={(e) => setPost({ ...post, content: e.target.value })} />
+            <button className='bg-blue-400 p-12 rounded-md py-2 text-white text-2xl' >edit</button>
 
+          </form>}
+
+      </div>
     </div>
   )
 }

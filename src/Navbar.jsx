@@ -4,6 +4,9 @@ import { useUserContext } from './UserProvider';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { ImCross } from 'react-icons/im';
 import { useState } from 'react';
+import { CgProfile } from 'react-icons/cg'
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 
@@ -14,6 +17,14 @@ function Navbar() {
   const [dropdownOn, setDropdownOn] = useState(false)
   //create state for activelinkbar to see which one is clicked and to change the background
   const [activeLink, setActiveLink] = useState('');
+
+
+  const location = useLocation()
+  console.log(location)
+
+  useEffect(() => {
+    setDropdownOn(false)
+  }, [location.pathname])
 
 
   function handleLinkClick(linkPath) {
@@ -45,30 +56,48 @@ function Navbar() {
       <Link to="/" className={activeLink === '/' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/')}><div className='absolute left-6 top-2 text-2xl hover:cursor-pointer '>Tech-Blog</div></Link>
 
       {/* created in html logic for the dropdownmenu in javascript */}
-      <div className={` NavLinks transition-all duration-300 bg-pink-100 flex flex-col absolute ${dropdownOn ? "top-10" : "-top-72  "}  right-0 p-4 md:flex md:static md:flex-row   md:text-2xl  `}>
-        <div className="Links border-red-500 border-2
-        flex flex-col
-           text-2xl  md:flex-row md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 md:absolute  md:justify-center
-            md:left-1/2 md:w-60 " >
+      <div className={` NavLinks  flex   flex-row  text-2xl  `}>
+        <div className="Links border-red-500 border-2 hidden md:flex
+           text-2xl flex-row top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute  justify-center
+            left-1/2 w-60 " >
 
 
           <Link to="/new" className={activeLink === '/new' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/new')}>New</Link>
+          <Link
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? "text-blue-700 font-bold" : ""}
+          >
+            About
+          </Link>
+
         </div>
-        <div className='buttons flex-col gap-y-2 flex md:flex-row md:absolute  md:right-3 md:top-1/2  md:-translate-y-1/2  '>
+      </div>
+      <button className='absolute right-6 top-2' onClick={dropdown}><CgProfile size={30} /> </button>
+
+
+      <div className={`dropdown bg-pink-100   min-w-40 absolute p-6 gap-4 right-0 flex flex-col
+            ${dropdownOn ? 'top-10' : '-top-72'}
+         `}>
+        {user &&
+          <p>{user.email}</p>}
+
+        <div className="flex flex-col md:hidden" >
+
+          <Link to="/new" className={activeLink === '/new' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/new')}>New</Link>
+        </div>
+
+        <div className='buttons flex flex-col gap-y-2 '>
 
           {/* check if someone is loged in if yes then show us a logout button */}
           {user === null ?
-            <> <Link to="/login" ><button className='bg-blue-400 px-2 rounded-md py-1 text-white text-xl mx-2'>SignIn</button></Link>
-              <Link to="/register" ><button className='bg-blue-400 px-2 rounded-md py-1 text-white text-xl mx-2'> Register</button></Link> </> :
-            <button className='bg-blue-400 px-2 rounded-md py-1 text-white font-mono text-xl  ' onClick={logout}>Log out </button>}
+            <> <Link to="/login" ><button className='bg-blue-400 px-2 rounded-md py-1 text-white text-xl mx-2 w-full'>SignIn</button></Link>
+              <Link to="/register" ><button className='bg-blue-400 px-2 rounded-md py-1 text-white text-xl mx-2 w-full'> Register</button></Link> </> :
+            <button className='bg-blue-400 px-2 rounded-md py-1 text-white font-mono text-xl  w-full' onClick={logout}>Log out </button>}
 
         </div>
-
-
       </div>
 
-
-      <button className='md:hidden absolute right-6 top-2  ' onClick={dropdown}>{dropdownOn ? <ImCross size={30} /> : <GiHamburgerMenu size={30} />} </button>
     </div>
   )
 }
