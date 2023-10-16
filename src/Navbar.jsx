@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { CgProfile } from 'react-icons/cg'
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import Picture from './Picture';
 
 
 
@@ -17,10 +18,11 @@ function Navbar() {
   const [dropdownOn, setDropdownOn] = useState(false)
   //create state for activelinkbar to see which one is clicked and to change the background
   const [activeLink, setActiveLink] = useState('');
+  console.log(user)
 
 
   const location = useLocation()
-  console.log(location)
+
 
   useEffect(() => {
     setDropdownOn(false)
@@ -73,7 +75,7 @@ function Navbar() {
 
         </div>
       </div>
-      <button className='absolute right-6 top-2' onClick={dropdown}><CgProfile size={30} /> </button>
+      <button className='absolute right-6 top-2' onClick={dropdown}><Picture id={user._id} /> </button>
 
 
       <div className={`dropdown bg-pink-100   min-w-40 absolute p-6 gap-4 right-0 flex flex-col

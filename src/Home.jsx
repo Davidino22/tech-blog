@@ -58,7 +58,7 @@ export default function Home() {
         <>
           {posts.map(post => {
             return (
-              <PostCard title={post.title} content={post.content} key={post._id} id={post._id} user={post.user.email} />
+              <PostCard title={post.title} content={post.content} key={post._id} id={post._id} user={post.user.email} userId={post.user._id} />
             )
           })}
         </>
