@@ -60,8 +60,8 @@ function Navbar() {
       {/* created in html logic for the dropdownmenu in javascript */}
       <div className={` NavLinks  flex   flex-row  text-2xl  `}>
         <div className="Links border-red-500 border-2 hidden md:flex
-           text-2xl flex-row top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute  justify-center
-            left-1/2 w-60 " >
+           text-2xl flex-row top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute
+            left-1/2 w-60 gap-8" >
 
 
           <Link to="/new" className={activeLink === '/new' ? 'bg-blue-400' : ''} onClick={() => handleLinkClick('/new')}>New</Link>
