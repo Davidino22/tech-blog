@@ -2,6 +2,7 @@ import React from 'react'
 import { AiOutlineDelete } from 'react-icons/ai';
 import { useUserContext } from './UserProvider';
 import { useNavigate, Link, useParams } from 'react-router-dom'
+import Picture from './Picture';
 
 
 
@@ -62,7 +63,7 @@ export default function Comments(props) {
   return (
 
     <>
-      {comments.map((comment) => <div key={comment._id} className="bg-white w-3/5  p-4 m-1 relative text-left  rounded"  ><p className='border-slate-800 border-b-2 text-xl '>{comment.user.email}</p> <p>{comment.text} </p>
+      {comments.map((comment) => <div key={comment._id} className="bg-white w-3/5  md:p-4 md:m-1 relative text-left  rounded p-8"  ><div className='border-slate-800 border-b-2 text-xl flex gap-4'> <Picture id={comment.userId} /> <p>{comment.user.email} </p></div> <p>{comment.text} </p>
 
         {user && user._id === comment.userId ? < AiOutlineDelete size={30} color={"red"} className=" absolute top-2 right-10 cursor-pointer" onClick={() => deleteItem(comment._id)} /> : null} </div>)
       }

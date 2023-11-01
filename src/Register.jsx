@@ -56,8 +56,8 @@ function Register() {
 
   return (<>
 
-    <div className="bg-gradient-to-tl from-red-500 to-blue-500 h-screen  flex justify-center items-center" >
-
+    <div className="bg-gradient-to-tl from-red-500 to-blue-500 h-screen  flex flex-col gap-12 justify-center items-center" >
+      <p className='text-4xl text-white '> Register to discuss :) </p>
       <form className="flex flex-col w-96 h-3/5 bg-green-100 border border-red-100 rounded-xl shadow-2xl p-12 justify-around" onSubmit={handleSubmit}>
         <div className=' flex flex-col'>
           <label htmlFor='email ' className='text-2xl'  >Email</label>
@@ -66,7 +66,7 @@ function Register() {
         </div>
         <div className='flex flex-col '>
           <label htmlFor='password ' className='text-2xl'>Password</label>
-          <input id="pasword" type="password" className="border-black w-30 h-8" onChange={changePassword} value={password} />
+          <input id="pasword" type="password" className="border-black w-30 h-8 bg-white" onChange={changePassword} value={password} />
         </div>
         <button className='bg-blue-400 px-4 rounded-md py-2 text-white text-2xl' type="submit">Register</button>
 

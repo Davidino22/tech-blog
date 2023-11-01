@@ -4,8 +4,8 @@ import Picture from './Picture.jsx'
 
 export default function Footer() {
   return (
-    <div className='h-40 w-screen bg-green-100 text-4xl'>
-      <div className='grid grid-rows-2 h-40 items-between'>
+    <div className='md:h-40 w-screen bg-slate-600 text-3xl text-white'>
+      <div className='grid grid-rows-2 md:h-40 items-between'>
         <p className="m-0">All rights stay with Lazar and David</p>
         {/* <Picture  /> */}
         <nav className='flex gap-16 justify-center'>

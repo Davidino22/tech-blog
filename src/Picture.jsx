@@ -2,6 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 
 function Picture({ id }) {
+  // Check if id is defined
+  if (id === null) {
+
+    // You can return a default picture or handle it as needed
+    return (
+      <div>
+        <img src="/profileicons/pic1.png" style={{ width: "30px" }} />
+      </div>
+    );
+  }
 
   console.log(id, 'id')
 
@@ -11,6 +21,9 @@ function Picture({ id }) {
 
     console.log(typeof id, 'type')
     let numbers = id.match(/\d/g)
+
+
+
 
 
 
@@ -45,7 +58,7 @@ function Picture({ id }) {
     <div>
 
 
-      <img style={{ width: '40px' }} src={determinePicture(id)} alt="pic1" />
+      <img style={{ width: '30px' }} src={determinePicture(id)} alt="pic1" />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { IoMdArrowBack } from 'react-icons/io';
 import { useUserContext } from './UserProvider';
 import Comments from './Comments';
 import PopUpDelete from './PopUpDelete';
+import Picture from './Picture';
 
 
 
@@ -185,7 +186,7 @@ export default function Subsection() {
 
 
           {user && post &&
-            user._id === post.userId ? < button onClick={deleteItem} className=" absolute top-4 right-0"><AiOutlineDelete size={50} color={"red"} /> </button > : null}
+            user._id === post.userId ? < button onClick={deleteItem} className=" absolute top-4 right-0"><AiOutlineDelete size={50} color={"FF7676"} /> </button > : null}
           {isPopUpOpen && <PopUpDelete onConfirm={handleConfirm} onCancel={handleCancel} />}
 
 
@@ -193,10 +194,14 @@ export default function Subsection() {
 
 
 
-        {post && <div className='w-3/5 bg-teal-50  rounded-t-md h-full overflow-auto border-b-2 border-slate-500 '>
+        {post && <div className='w-3/5 bg-teal-50  rounded-t-md h-full overflow-auto border-b-2 border-slate-500 p-8 gap-4 '>
 
-          <div className=' py-2 border-slate-300 border-b-2 relative'><p className='text-2xl '>{post.title} </p>
-            <p>{post.user.email}</p>
+          <div className=' py-2 border-slate-300 border-b-2 relative'> <p className='text-3xl '>{post.title}  </p>
+
+            <div className='flex gap-4 p-4'>
+              <Picture id={post.userId} />
+              <p>{post.user.email}</p>
+            </div>
             {user && post &&
               user._id === post.userId ?
               <Link to={`/posts/${id}/edit`} className='absolute top-2 right-2'><GrEdit size={30} /></Link> : null}</div>
@@ -206,12 +211,12 @@ export default function Subsection() {
         </div>}
 
         {user ?
-          <form className='w-3/5  flex  ' onSubmit={handleSubmit} >
+          <form className='md:w-3/5  flex md:h-12 md:m-2  ' onSubmit={handleSubmit} >
             <textarea className=' rounded-md  w-2/5 text-2xl bg-white' placeholder="Comment..." style={{ flexGrow: 2, resize: "none" }} onChange={handleInput}
               value={input}
             ></textarea>
 
-            <button className=' w-1/5 bg-blue-400 text-2xl text-white rounded-md ' style={{ flexGrow: 1 }} type="submit" >Comment</button>
+            <button className=' md:w-1/5  bg-blue-400 text-2xl text-white rounded-md ' style={{ flexGrow: 1 }} type="submit" >Post</button>
           </form> : <div className='p-8'>If you want to add a comment you need to <Link to="/login" className="bg-yellow-400 p-4 rounded-md ">SignIn</Link> </div>}
 
         <Comments comments={comments} />

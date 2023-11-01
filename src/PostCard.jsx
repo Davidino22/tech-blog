@@ -6,14 +6,18 @@ import Picture from './Picture'
 export default function PostCard(props) {
   const { title, content, id, user, userId } = props
   return (
-    <Link to={`/posts/${id}`} className="w-3/5 min-h-40 my-4 hover:scale-105 transition ease-in-out shadow-md hover:shadow-xl"  >
+    <Link to={`/posts/${id}`} className="w-full min-h-40 my-4 hover:scale-105 transition ease-in-out shadow-md hover:shadow-xl"  >
 
-      <div className='bg-slate-200 w-full h-full rounded-lg   border'>
-        <div className='  border-b-2 h-20  border-slate-300 '><p className='text-2xl'>{title}</p>
-          <Picture id={userId} />
-          <p className='text-red-500'>{user}</p> </div>
+      <div className='bg-violet-100 w-full h-full rounded-lg p-8  '>
+        <div className='border-b-2  border-slate-300' >
+          <p className='md:text-4xl text-3xl '>{title} </p>
+          <div className=' flex p-4 gap-4' >
+            <Picture id={userId} />
+            <p className='text-red-500  '> {user} </p> </div>
+        </div>
 
-        <p className='pt-4 text-2xl h-full'>{content}</p>
+
+        <p className='pt-4 md:text-2xl text-xl h-full'>{content}</p>
 
       </div>
 

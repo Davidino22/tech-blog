@@ -80,7 +80,7 @@ export default function CreateSection() {
         <p className='text-5xl m-8 text-white border-b-4'>Create a new Post</p>
         <form className="w-full" onSubmit={handleSubmit} >
           <label htmlFor='title' className='font-mono  ' ></label>
-          <input className='w-full border-b-2 border-slate-800 h-16 text-2xl' placeholder='Title' type="text" id="title" onChange={handleTitle} value={title} />
+          <input className='w-full md:border-b-2 border-slate-800 h-16 text-2xl' placeholder='Title' type="text" id="title" onChange={handleTitle} value={title} />
           <label htmlFor="text" className='text-white font-mono'></label>
           <textarea className='w-full h-36 text-2xl' id="text" onChange={handleText} value={text} placeholder="write a descripton..."></textarea>
 
@@ -88,7 +88,7 @@ export default function CreateSection() {
 
 
           <div className=' flex justify-center w-full '>
-            <button className='bg-blue-400 p-12 rounded-md py-2 text-white text-2xl font-mono ' type="submit" >Post </button>
+            <button className='bg-blue-400 p-12 rounded-md md:py-2 text-white text-2xl font-mono ' type="submit" >Post </button>
           </div>
 
 

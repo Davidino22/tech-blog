@@ -69,9 +69,9 @@ function Login() {
 
   return (<>
 
-    <div className="bg-gradient-to-tl from-red-500 to-blue-500 h-screen  flex justify-center items-center" >
-
-      <form className="flex flex-col w-96 h-3/5 bg-green-100 border border-red-100 rounded-xl shadow-2xl p-12 justify-around" onSubmit={handleSubmit}>
+    <div className="bg-gradient-to-tl from-red-500 to-blue-500 h-screen  flex flex-col gap-12 justify-center items-center" >
+      <p className='text-4xl text-white '>PLease Sign In </p>
+      <form className="flex flex-col md:w-96 md:h-3/5 bg-green-100 border border-red-100 rounded-xl shadow-2xl p-12 justify-around" onSubmit={handleSubmit}>
         <div className=' flex flex-col'>
           <label htmlFor='email ' className='text-2xl'  >Email</label>
           <input type="email" id="email" className="border-black w-30 h-8" onChange={changeEmail} value={email} />
@@ -81,7 +81,7 @@ function Login() {
           <label htmlFor='password ' className='text-2xl'>Password</label>
           <input id="pasword" type="password" className="border-black w-30 h-8" onChange={changePassword} value={password} />
         </div>
-        <button className='bg-blue-400 px-4 rounded-md py-2 text-white text-2xl font-mono' type="submit">SignIn</button>
+        <button className='bg-blue-400 px-4 rounded-md md:py-2 text-white text-2xl font-mono' type="submit">SignIn</button>
 
 
       </form>
