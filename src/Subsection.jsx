@@ -180,9 +180,9 @@ export default function Subsection() {
     <div className=' min-h-screen bg-gradient-to-tl from-red-500 to-blue-500 flex flex-col items-center  '>
 
 
-      <div className='w-8/12 h-full  flex flex-col  items-center  relative pt-16 pb-16' style={{ backgroundColor: 'rgba(255,255,255,0.3)' }} >
-        <div >
-          <Link to="/" className=' absolute top-4 left-0 text-2xl'><IoMdArrowBack size={30} />Home </Link>
+      <div className='w-8/12 min-h-screen md:pl-20 md:pr-20  flex flex-col  items-center  relative pt-16 pb-16' style={{ backgroundColor: 'rgba(255,255,255,0.3)' }} >
+        <div className=''>
+          <Link to="/" className=' absolute top-2 left-0 text-2xl  '><IoMdArrowBack size={30} />Home </Link>
 
 
           {user && post &&
@@ -194,9 +194,10 @@ export default function Subsection() {
 
 
 
-        {post && <div className='w-3/5 bg-teal-50  rounded-t-md h-full overflow-auto border-b-2 border-slate-500 p-8 gap-4 '>
+        {post && <div className='w-full bg-teal-50 mt-8 rounded-t-md h-full overflow-auto border-b-2 border-slate-500 p-8 gap-4   '>
 
-          <div className=' py-2 border-slate-300 border-b-2 relative'> <p className='text-3xl '>{post.title}  </p>
+          <div className=' py-2  border-slate-300 border-b-2 relative'>
+            <p className='text-xl font-bold-200  '>{post.title}  </p>
 
             <div className='flex gap-4 p-4'>
               <Picture id={post.userId} />
@@ -206,17 +207,17 @@ export default function Subsection() {
               user._id === post.userId ?
               <Link to={`/posts/${id}/edit`} className='absolute top-2 right-2'><GrEdit size={30} /></Link> : null}</div>
 
-          <p className=' text-2xl h-full '>{post.content}</p>
+          <p className=' text-lg h-full '>{post.content}</p>
 
         </div>}
 
         {user ?
-          <form className='md:w-3/5  flex md:h-12 md:m-2  ' onSubmit={handleSubmit} >
-            <textarea className=' rounded-md  w-2/5 text-2xl bg-white' placeholder="Comment..." style={{ flexGrow: 2, resize: "none" }} onChange={handleInput}
+          <form className='w-full  flex h-12 m-2  ' onSubmit={handleSubmit} >
+            <textarea className=' rounded-md  w-2/5 text-2xl bg-white ' placeholder="Comment..." style={{ flexGrow: 2, resize: "none" }} onChange={handleInput}
               value={input}
             ></textarea>
 
-            <button className=' md:w-1/5  bg-blue-400 text-2xl text-white rounded-md ' style={{ flexGrow: 1 }} type="submit" >Post</button>
+            <button className=' w-1/5  bg-blue-400 text-2xl text-white rounded-md ' style={{ flexGrow: 1 }} type="submit" >Post</button>
           </form> : <div className='p-8'>If you want to add a comment you need to <Link to="/login" className="bg-yellow-400 p-4 rounded-md ">SignIn</Link> </div>}
 
         <Comments comments={comments} />

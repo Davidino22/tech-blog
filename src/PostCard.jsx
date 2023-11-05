@@ -10,14 +10,14 @@ export default function PostCard(props) {
 
       <div className='bg-violet-100 w-full h-full rounded-lg p-8  '>
         <div className='border-b-2  border-slate-300' >
-          <p className='md:text-4xl text-3xl '>{title} </p>
+          <p className='md:text-2xl text-xl '>{title} </p>
           <div className=' flex p-4 gap-4' >
             <Picture id={userId} />
             <p className='text-red-500  '> {user} </p> </div>
         </div>
 
 
-        <p className='pt-4 md:text-2xl text-xl h-full'>{content}</p>
+        <p className='pt-4 md:text-xl text-lg h-full'>{content}</p>
 
       </div>
 
