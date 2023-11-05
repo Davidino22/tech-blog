@@ -180,7 +180,7 @@ export default function Subsection() {
     <div className=' min-h-screen bg-gradient-to-tl from-red-500 to-blue-500 flex flex-col items-center  '>
 
 
-      <div className='w-8/12 min-h-screen md:pl-20 md:pr-20  flex flex-col  items-center  relative pt-16 pb-16' style={{ backgroundColor: 'rgba(255,255,255,0.3)' }} >
+      <div className='w-10/12 md:w-8/12 lg:pl-32 lg:pr-32 min-h-screen md:pl-20 md:pr-20 p-4 flex flex-col  items-center  relative pt-16 pb-16' style={{ backgroundColor: 'rgba(255,255,255,0.3)' }} >
         <div className=''>
           <Link to="/" className=' absolute top-2 left-0 text-2xl  '><IoMdArrowBack size={30} />Home </Link>
 

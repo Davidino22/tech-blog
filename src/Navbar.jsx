@@ -48,13 +48,13 @@ function Navbar() {
 
 
   return (
-    <div className="navbar bg-slate-600 w-full h-12 shadow-md border-none flex justify-between relative sticky top-0 z-10 text-white">
+    <div className="navbar bg-slate-600 w-full h-12 shadow-md border-none flex justify-between relative sticky top-0 z-10 text-white text-xl">
       <Link to="/" >
-        <div className='absolute left-6 top-2 text-2xl hover:bg-sky-700'>Tech-Blog</div>
+        <div className='absolute left-6 top-2  hover:bg-sky-700'>Tech-Blog</div>
       </Link>
 
-      <div className={`NavLinks flex flex-row text-2xl`}>
-        <div className="Links md:flex text-2xl flex-row top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute left-1/2 w-60 gap-8">
+      <div className={`NavLinks flex flex-row `}>
+        <div className="Links md:flex hidden flex-row top-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute left-1/2 w-60 gap-8">
           <NavLink to="/new" className={({ isActive }) =>
             [
 
@@ -87,13 +87,34 @@ function Navbar() {
             <p>{user.email}</p>
             {/* ... other user-related content */}
             <button className='bg-blue-400 md:px-2 rounded-md md:py-1 text-white font-mono text-xl w-full' onClick={logout}>Log out</button>
+
           </>
         ) : (
           <>
             <Link to="/login"><button className='bg-blue-400 md:px-2 rounded-md md:py-1 text-white text-xl md:mx-2 w-full'>Sign In</button></Link>
             <Link to="/register"><button className='bg-blue-400 md:px-2 rounded-md md:py-1 text-white text-xl mx-2 w-full'>Register</button></Link>
+
+
           </>
+
         )}
+        <NavLink to="/new" className={({ isActive }) =>
+          [
+
+            isActive ? "bg-blue-500" : "", 'hover:bg-sky-700 md:hidden'
+
+          ].join(" ")
+        } >New Post</NavLink>
+
+
+
+        <NavLink to="/about" className={({ isActive }) =>
+          [
+
+            isActive ? "bg-blue-500" : "", 'hover:bg-sky-700 md:hidden'
+
+          ].join(" ")
+        } >About</NavLink>
       </div>
     </div>
   );
